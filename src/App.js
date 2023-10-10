@@ -6,23 +6,23 @@ import '../src/App.css';
 
 const App = () => {
     const [SearchField, SetSearchField] = useState('');
-    const [monsters, SetMonsters] = useState([]);
-    const [filteredMonster, SetFilteredMonsters] = useState(monsters);
+    const [monsters, Setmonsters] = useState([]);
+    const [filteredMonsters, SetfilteredMonsters] = useState(monsters);
 
     useEffect(() => {
         fetch('https://jsonplaceholder.typicode.com/users')
             .then((response) => response.json())
-            .then((users) => SetMonsters(users))
+            .then((users) => Setmonsters(users))
     }, []);
 
     useEffect(() => {
-        const newfilteredMonster = monsters.filter((monster) => {
+        const newfilteredMonsters = monsters.filter((monster) => {
             return monster.name.toLocaleLowerCase().includes(SearchField);
         });
-
-        SetFilteredMonsters(newfilteredMonster);
+        
+        SetfilteredMonsters(newfilteredMonsters);
     }, [monsters, SearchField]);
-    
+
     const onSearchChange = (event) => {
         const SearchFieldString = event.target.value.toLocaleLowerCase();
         SetSearchField(SearchFieldString);
@@ -32,12 +32,12 @@ const App = () => {
         <div className='App'>
             <h1 className='app-title'>Monsters Rolodex</h1>
 
-            <SearchBox 
+            <SearchBox
                 className='Monsters-Search-Box'
                 onChangeHandler={onSearchChange}
                 placeholder='Search Monsters'
             />
-            <CardList monsters={filteredMonster}/>
+            <CardList monsters={filteredMonsters}/>
         </div>
     );
 };

@@ -1,8 +1,7 @@
 import '../card/card.styles.css';
 
 const Card = ({monsters}) => {
-    const {id, name, email} = monsters;
-    
+    const {id, name, email, phone, website} = monsters;
     return(
         <div className='card-container'>
             <img 
@@ -11,6 +10,8 @@ const Card = ({monsters}) => {
             />
             <h2>{name}</h2>
             <p>{email}</p>
+            <p>{phone}</p>
+            <p>{website}</p>
         </div>
     );
 };
